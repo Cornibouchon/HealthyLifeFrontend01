@@ -1,0 +1,25 @@
+.total-score {
+    background-color: #2c3e50;  /* Dark background */
+    color: white;                /* White text */
+    padding: 20px;              /* Padding around the text */
+    border-radius: 10px;        /* Rounded corners */
+    text-align: center;          /* Center the text */
+    width: 80%;                  /* Width of the box */
+    margin: auto;                /* Center the box */
+}
+.total-score h2 {
+    font-size: 50px;
+    margin: 0;                  /* Remove margin for heading */
+}
+.total-score h1 {
+    font-size: 80px;            /* Bigger number */
+    margin: 0;                  /* Remove margin for number */
+}
+.badge {
+    background-color: #f39c12;  /* Orange background for the badge */
+    color: white;                /* White text */
+    padding: 5px 10px;          /* Padding for the badge */
+    border-radius: 5px;         /* Rounded corners for the badge */
+    display: inline-block;       /* Inline block for the badge */
+    margin-top: 10px;           /* Margin above the badge */
+}
