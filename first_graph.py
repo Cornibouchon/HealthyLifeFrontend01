@@ -1,9 +1,10 @@
 import streamlit as st
 import pandas as pd
 from streamlit_option_menu import option_menu
-from sections.overview import display_overview
 from sections.overview_newData import display_overview_new
-from sections.sport import display_sport
+from sections.sleep_newData import display_sleep
+from sections.sport_newData import display_sport
+from sections.sport_newData import calculate_average_scores
 
 # Set page configuration
 st.set_page_config(page_title="HealthyLife November Dashboard", layout="wide")
@@ -24,6 +25,8 @@ with st.sidebar:
 file_path = "Daily_Scores.xlsx"
 
 data = pd.read_excel(file_path)
+
+sport_average = calculate_average_scores(data)
 
 if choose == "Overview":
 
@@ -46,3 +49,13 @@ elif choose == "Sport":
         unsafe_allow_html=True
     )
     display_sport(data)
+elif choose == "Sleep":
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>
+            HealthyLife November: Sleep
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
+    display_sleep(data)

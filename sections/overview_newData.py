@@ -1,10 +1,10 @@
-# sections/overview.py
+# sections/overview_newData.py
 import streamlit as st
 import plotly.express as px
 import pandas as pd
 
 
-def calculate_scores(data):
+def calculate_total_team_scores(data):
     # Create a new DataFrame to store results
     result_data = {
         'Date': [],
@@ -41,10 +41,7 @@ def display_overview_new(data):
     team_muchachos_col = 'Muchachos'
 
     # Calculate scores
-    results_data = calculate_scores(data)
-
-    # Display the results for verification
-    print(results_data)
+    results_data = calculate_total_team_scores(data)
 
     # Create a long-format DataFrame for plotting
     data_long = results_data.melt(id_vars=['Date'], value_vars=[team_bonjour_col, team_muchachos_col],
