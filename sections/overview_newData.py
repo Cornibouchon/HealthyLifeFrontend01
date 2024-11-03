@@ -1,6 +1,38 @@
 # sections/overview.py
 import streamlit as st
 import plotly.express as px
+import pandas as pd
+
+
+def calculate_scores(data):
+    # Create a new DataFrame to store results
+    result_data = {
+        'Date': [],
+        'Bonjour': [],
+        'Muchachos': []
+    }
+
+    # Iterate through each unique date in the original DataFrame
+    for date in data['Date'].unique():
+        # Filter the rows for the current date
+        date_data = data[data['Date'] == date]
+
+        # Calculate total scores by summing the first four entries
+        total_score_bonjour = date_data['Bonjour'].head(4).sum()
+        total_score_muchachos = date_data['Muchachos'].head(4).sum()
+
+        # Round to one decimal place
+        total_score_bonjour = round(total_score_bonjour, 1)
+        total_score_muchachos = round(total_score_muchachos, 1)
+
+        # Append the results to the result_data dictionary
+        result_data['Date'].append(date)
+        result_data['Bonjour'].append(total_score_bonjour)
+        result_data['Muchachos'].append(total_score_muchachos)
+
+    # Convert the result_data dictionary into a new DataFrame
+    result_df = pd.DataFrame(result_data)
+    return result_df
 
 
 def display_overview_new(data):
@@ -8,9 +40,15 @@ def display_overview_new(data):
     team_bonjour_col = 'Bonjour'
     team_muchachos_col = 'Muchachos'
 
+    # Calculate scores
+    results_data = calculate_scores(data)
+
+    # Display the results for verification
+    print(results_data)
+
     # Create a long-format DataFrame for plotting
-    data_long = data.melt(id_vars=['Date'], value_vars=[team_bonjour_col, team_muchachos_col],
-                          var_name='Team', value_name='Score')
+    data_long = results_data.melt(id_vars=['Date'], value_vars=[team_bonjour_col, team_muchachos_col],
+                                  var_name='Team', value_name='Score')
 
     # Plotly Bar Chart for Team Bonjour
     fig_bonjour = px.bar(data_long[data_long['Team'] == team_bonjour_col], x='Date', y='Score', barmode='group',
@@ -31,11 +69,10 @@ def display_overview_new(data):
     # Create two columns for Team Bonjour and Team Muchachos
     col1, col2 = st.columns(2)
 
-    # Add content to the first column (Team Bonjour)
     with col1:
         st.markdown(f"<h2 style='text-align: center;'>{team_bonjour_col}</h2>",
                     unsafe_allow_html=True)  # Centered heading
-        total_bonjour = data[team_bonjour_col].sum()  # Total score for Bonjour
+        total_bonjour = results_data[team_bonjour_col].sum()  # Use the rounded scores
         st.markdown(f"""
             <div class='total-score' style="text-align: center;">
                 <h2>Team Score</h2>
@@ -44,11 +81,10 @@ def display_overview_new(data):
         """, unsafe_allow_html=True)
         st.plotly_chart(fig_bonjour, use_container_width=True, key='fig_bonjour')  # Plot for Team Bonjour
 
-    # Add content to the second column (Team Muchachos)
     with col2:
         st.markdown(f"<h2 style='text-align: center;'>{team_muchachos_col}</h2>",
                     unsafe_allow_html=True)  # Centered heading
-        total_muchachos = data[team_muchachos_col].sum()  # Total score for Muchachos
+        total_muchachos = results_data[team_muchachos_col].sum()  # Use the rounded scores
         st.markdown(f"""
             <div class='total-score' style="text-align: center;">
                 <h2>Team Score</h2>
@@ -56,6 +92,3 @@ def display_overview_new(data):
             </div>
         """, unsafe_allow_html=True)
         st.plotly_chart(fig_muchachos, use_container_width=True, key='fig_muchachos')  # Plot for Team Muchachos
-
-# Usage: Call this function with your new DataFrame
-# display_overview_new(result_df)
