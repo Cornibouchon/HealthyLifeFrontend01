@@ -35,3 +35,43 @@ body {
 .stMarkdown, .stText, .stHeader, .stSubheader {
     color: #2d952f; /* Ensure text in Streamlit components is white */
 }
+
+.participant-ranking {
+    border: 3px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 7px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.participant-ranking.top-1 {
+    border-color: gold;
+    background-color: #fffae6;
+}
+
+.participant-ranking.top-2 {
+    border-color: silver;
+    background-color: #f0f8ff;
+}
+
+.participant-ranking.top-3 {
+    border-color: #cd7f32;
+    background-color: #f5f5dc;
+}
+
+.participant-name {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.participant-score {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+ç

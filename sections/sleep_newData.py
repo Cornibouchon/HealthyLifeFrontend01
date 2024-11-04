@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from widgets.ranking import display_ranking
 
 
 def calculate_total_team_scores_sleep(data):
@@ -138,9 +139,8 @@ def display_sleep(full_data):
     sorted_scores = pd.DataFrame({'Participant': selected_participant_data.columns[1:],
                                   'Total Score': total_participant_scores.values})
 
-    sorted_scores = sorted_scores.sort_values(by='Total Score', ascending=False)
+    sorted_scores = sorted_scores.sort_values(by='Total Score', ascending=False).reset_index(drop=True)
 
     # Display the sorted participant rankings
     st.subheader("Participant Ranking")
-    for index, row in sorted_scores.iterrows():
-        st.write(f"{row['Participant']}: {row['Total Score']:.1f}")  # Rounded score display
+    display_ranking(sorted_scores)
