@@ -13,3 +13,27 @@ def display_ranking(sorted_scores):
                 <div class="participant-score">{row['Total Score']:.1f}</div>
             </div>
         """, unsafe_allow_html=True)
+
+
+def display_Teamscore(filtered_data, team_bonjour_col, team_muchachos_col):
+    # Calculate the sum for Bonjour and Muchachos
+    total_score_bonjour = filtered_data['Bonjour'].sum()
+    total_score_muchachos = filtered_data['Muchachos'].sum()
+    # Display team names and total scores in two columns
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown(f"<h2 style='text-align: center;'>{team_bonjour_col}</h2>", unsafe_allow_html=True)
+        st.markdown(f"""
+                    <div class='total-score'>
+                        <h2>Total Score</h2>
+                        <h1>{total_score_bonjour:.1f}</h1> 
+                    </div>
+                """, unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"<h2 style='text-align: center;'>{team_muchachos_col}</h2>", unsafe_allow_html=True)
+        st.markdown(f"""
+                    <div class='total-score'>
+                        <h2>Total Score</h2>
+                        <h1>{total_score_muchachos:.1f}</h1> 
+                    </div>
+                """, unsafe_allow_html=True)

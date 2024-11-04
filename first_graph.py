@@ -4,7 +4,6 @@ from streamlit_option_menu import option_menu
 from sections.overview_newData import display_overview_new
 from sections.sleep_newData import display_sleep
 from sections.sport_newData import display_sport
-from sections.sport_newData import calculate_average_scores
 
 # Set page configuration
 st.set_page_config(page_title="HealthyLife November Dashboard", layout="wide")
@@ -25,8 +24,6 @@ with st.sidebar:
 file_path = "data/Daily_Scores.xlsx"
 
 data = pd.read_excel(file_path)
-
-sport_average = calculate_average_scores(data)
 
 if choose == "Overview":
 
