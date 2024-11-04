@@ -22,7 +22,7 @@ with st.sidebar:
     )
 
 # Load the data from the Excel file
-file_path = "Daily_Scores.xlsx"
+file_path = "data/Daily_Scores.xlsx"
 
 data = pd.read_excel(file_path)
 
