@@ -7,8 +7,8 @@ def calculate_total_team_scores(data):
     # Create a new DataFrame to store results
     result_data = {
         'Date': [],
-        'Bonjour': [],
-        'Muchachos': []
+        TEAM_BONJOUR_COL: [],
+        TEAM_MUCHACHOS_COL: []
     }
 
     # Iterate through each unique date in the original DataFrame
@@ -17,8 +17,8 @@ def calculate_total_team_scores(data):
         date_data = data[data['Date'] == date]
 
         # Calculate total scores by summing the first four entries
-        total_score_bonjour = date_data['Bonjour'].head(4).sum()
-        total_score_muchachos = date_data['Muchachos'].head(4).sum()
+        total_score_bonjour = date_data[TEAM_BONJOUR_COL].head(4).sum()
+        total_score_muchachos = date_data[TEAM_MUCHACHOS_COL].head(4).sum()
 
         # Round to one decimal place
         total_score_bonjour = round(total_score_bonjour, 1)
@@ -26,8 +26,8 @@ def calculate_total_team_scores(data):
 
         # Append the results to the result_data dictionary
         result_data['Date'].append(date)
-        result_data['Bonjour'].append(total_score_bonjour)
-        result_data['Muchachos'].append(total_score_muchachos)
+        result_data[TEAM_BONJOUR_COL].append(total_score_bonjour)
+        result_data[TEAM_MUCHACHOS_COL].append(total_score_muchachos)
 
     # Convert the result_data dictionary into a new DataFrame
     result_df = pd.DataFrame(result_data)
@@ -38,8 +38,8 @@ def calculate_total_team_scores_by_type(data, score_types):
     # Create a new DataFrame to store results
     result_data = {
         'Date': [],
-        'Bonjour': [],
-        'Muchachos': []
+        TEAM_BONJOUR_COL: [],
+        TEAM_MUCHACHOS_COL: []
     }
 
     # Iterate through each unique date in the original DataFrame
@@ -47,7 +47,7 @@ def calculate_total_team_scores_by_type(data, score_types):
         # Filter the rows for the current date and only keep rows with the specified score types
         date_data = data[(data['Date'] == date) & (data['Score_typ'].isin(score_types))]
 
-        # Calculate total scores for 'Bonjour' and 'Muchachos' by summing the relevant entries
+        # Calculate total scores for TEAM_BONJOUR_COL and TEAM_MUCHACHOS_COL by summing the relevant entries
         total_score_bonjour = date_data[TEAM_BONJOUR_COL].sum() / 2  # Sum and divide by 2
         total_score_muchachos = date_data[TEAM_MUCHACHOS_COL].sum() / 2  # Sum and divide by 2
 

@@ -24,6 +24,22 @@ with st.sidebar:
 file_path = "data/Daily_Scores.xlsx"
 
 data = pd.read_excel(file_path)
+# Renaming the Total Score names
+data = data.rename(columns={'Muchachos': 'Final Bosses', 'Bonjour': 'Muchachos'})
+
+
+def test_muchacho_columns_sum_equals_muchachos(df):
+    # Filter columns containing "Muchacho"
+    muchacho_columns = [col for col in df.columns[:-2] if "Muchacho" in col]
+
+    # Iterate through each row
+    for index, row in df.iterrows():
+        # Calculate the sum of all "Muchacho" columns for the current row
+        muchacho_sum = row[muchacho_columns].sum()
+
+        # Assert that this sum equals the value in the "Muchachos" column
+        assert muchacho_sum == row["Final Bosses"], f"Sum mismatch in row {index}: {muchacho_sum} != {row['Muchachos']}"
+
 
 if choose == "Overview":
 

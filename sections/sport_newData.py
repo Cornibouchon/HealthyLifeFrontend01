@@ -9,8 +9,6 @@ from utils.data_manipulation import calculate_total_team_scores_by_type, calcula
 
 def display_sport(full_data):
     # Set the column names for the new DataFrame
-    team_bonjour_col = 'Bonjour'
-    team_muchachos_col = 'Muchachos'
 
     sport_team_data = calculate_total_team_scores_by_type(full_data,
                                                           ['abs_activity', 'rel_activity'])  # Get the total scores
