@@ -17,8 +17,8 @@ def calculate_total_team_scores(data):
         date_data = data[data['Date'] == date]
 
         # Calculate total scores by summing the first four entries
-        total_score_bonjour = date_data[TEAM_BONJOUR_COL].head(4).sum()
-        total_score_muchachos = date_data[TEAM_MUCHACHOS_COL].head(4).sum()
+        total_score_bonjour = date_data[TEAM_BONJOUR_COL].head(4).sum() / 4
+        total_score_muchachos = date_data[TEAM_MUCHACHOS_COL].head(4).sum() / 4
 
         # Round to one decimal place
         total_score_bonjour = round(total_score_bonjour, 1)

@@ -14,8 +14,8 @@ def display_overview_new(data):
     data_long = results_data.melt(id_vars=['Date'], value_vars=[TEAM_BONJOUR_COL, TEAM_MUCHACHOS_COL],
                                   var_name='Team', value_name='Score')
 
-    fig_bonjour = plot_total_team_score(data_long)
-    fig_muchachos = plot_total_team_score(data_long)
+    fig_bonjour = plot_total_team_score(data_long, TEAM_BONJOUR_COL)
+    fig_muchachos = plot_total_team_score(data_long, TEAM_MUCHACHOS_COL)
 
     # Create two columns for Team Bonjour and Team Muchachos
     col1, col2 = st.columns(2)
@@ -45,12 +45,12 @@ def display_overview_new(data):
         st.plotly_chart(fig_muchachos, use_container_width=True, key='fig_muchachos')  # Plot for Team Muchachos
 
 
-def plot_total_team_score(data_long):
+def plot_total_team_score(data_long, team_name):
     # Plotly Bar Chart for Team Bonjour
-    fig_bonjour = px.bar(data_long[data_long['Team'] == TEAM_BONJOUR_COL], x='Date', y='Score', barmode='group',
+    fig_bonjour = px.bar(data_long[data_long['Team'] == team_name], x='Date', y='Score', barmode='group',
                          title="Daily Scores",
                          labels={"Score": "Points", "Date": "Date"})
     fig_bonjour.update_layout(title_x=0.5)
-    fig_bonjour.update_yaxes(range=[0, 200])
+    fig_bonjour.update_yaxes(range=[0, 50])
     fig_bonjour.update_xaxes(tickformat="%Y-%m-%d", tickvals=data_long['Date'].unique())
     return fig_bonjour
