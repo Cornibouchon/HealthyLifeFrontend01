@@ -25,7 +25,7 @@ file_path = "data/Daily_Scores.xlsx"
 
 data = pd.read_excel(file_path)
 # Renaming the Total Score names
-data = data.rename(columns={'Muchachos': 'Final Bosses', 'Bonjour': 'Muchachos'})
+data = data.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
 
 
 def test_muchacho_columns_sum_equals_muchachos(df):

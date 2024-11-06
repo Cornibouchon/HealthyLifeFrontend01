@@ -1,5 +1,5 @@
 # config.py
 
 # Global constants
-TEAM_BONJOUR_COL = 'Final Bosses'
-TEAM_MUCHACHOS_COL = 'Muchachos'
+TEAM_RESTFUL_GAINZ_COL = 'RESTful Gainz'
+TEAM_FINAL_BOSSES_COL = 'Final Bosses'

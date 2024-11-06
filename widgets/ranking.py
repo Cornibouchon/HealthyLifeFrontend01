@@ -1,6 +1,6 @@
 import streamlit as st
 
-from config import TEAM_BONJOUR_COL, TEAM_MUCHACHOS_COL
+from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL
 
 
 def display_ranking(sorted_scores):
@@ -19,8 +19,8 @@ def display_ranking(sorted_scores):
 
 def display_Teamscore(filtered_data, team_bonjour_col, team_muchachos_col):
     # Calculate the sum for Bonjour and Muchachos
-    total_score_bonjour = filtered_data[TEAM_BONJOUR_COL].sum()
-    total_score_muchachos = filtered_data[TEAM_MUCHACHOS_COL].sum()
+    total_score_bonjour = filtered_data[TEAM_RESTFUL_GAINZ_COL].sum()
+    total_score_muchachos = filtered_data[TEAM_FINAL_BOSSES_COL].sum()
     # Display team names and total scores in two columns
     col1, col2 = st.columns(2)
     with col1:

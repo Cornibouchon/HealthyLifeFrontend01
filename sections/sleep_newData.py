@@ -3,7 +3,7 @@ import pandas as pd
 from widgets.ranking import display_ranking, display_Teamscore
 from widgets.slider import daterange_slider
 from utils.data_manipulation import calculate_total_team_scores_by_type, calculate_average_score_per_particpant_and_type
-from config import TEAM_BONJOUR_COL, TEAM_MUCHACHOS_COL
+from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL
 
 
 def display_sleep(full_data):
@@ -23,7 +23,7 @@ def display_sleep(full_data):
     # Filter sleep_team_data based on the selected date range
     filtered_data = sleep_team_data[sleep_team_data['Date'].isin(selected_date_range)]
 
-    display_Teamscore(filtered_data, TEAM_BONJOUR_COL, TEAM_MUCHACHOS_COL)
+    display_Teamscore(filtered_data, TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL)
 
     # Filter average_sleep_scores_per_participant based on the selected date range
     selected_participant_data = average_sleep_scores_per_participant[
