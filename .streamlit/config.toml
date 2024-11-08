@@ -1,2 +1,3 @@
 [theme]
 base = "dark"  # or "light"
+primaryColor = "#FFFFFF"  # set this for consistent white text
