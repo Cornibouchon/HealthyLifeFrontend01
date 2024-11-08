@@ -83,7 +83,10 @@ elif choose == "Chase The Creators":
     st.markdown(
         """
         <h1 style='text-align: center;'>
-            Chase the Creators: Absolute Sport Score
+            Chase the Creators:
+        </h1>
+        <h1 style='text-align: center;'>
+            (Absolute Sport + Absolute Sleep) / 2
         </h1>
         """,
         unsafe_allow_html=True
