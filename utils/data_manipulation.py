@@ -1,6 +1,7 @@
 import pandas as pd
 
 from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL
+import pandas as pd
 
 
 def calculate_total_team_scores(data):
@@ -28,6 +29,36 @@ def calculate_total_team_scores(data):
         result_data['Date'].append(date)
         result_data[TEAM_RESTFUL_GAINZ_COL].append(total_score_bonjour)
         result_data[TEAM_FINAL_BOSSES_COL].append(total_score_muchachos)
+
+    # Convert the result_data dictionary into a new DataFrame
+    result_df = pd.DataFrame(result_data)
+    return result_df
+
+
+def calculate_total_abs_activity(data):
+    # Filter the data to only include dates from November 6, 2024, onward
+    data = data[data['Date'] >= '2024-11-06']
+
+    # Create a new DataFrame to store results
+    result_data = {
+        'Date': [],
+        'Friss mi Stoub': [],
+        'Smash di weg': []
+    }
+
+    # Iterate through each unique date in the filtered DataFrame
+    for date in data['Date'].unique():
+        # Filter the rows for the current date and for 'abs_activity'
+        date_data = data[(data['Date'] == date) & (data['Score_typ'] == 'abs_activity')]
+
+        # Sum the 'abs_activity' scores for each participant
+        total_score_friss_mi_stoub = date_data['Friss mi Stoub'].sum()
+        total_score_smash_di_weg = date_data['Smash di weg'].sum()
+
+        # Append the results to the result_data dictionary
+        result_data['Date'].append(date)
+        result_data['Friss mi Stoub'].append(total_score_friss_mi_stoub)
+        result_data['Smash di weg'].append(total_score_smash_di_weg)
 
     # Convert the result_data dictionary into a new DataFrame
     result_df = pd.DataFrame(result_data)
@@ -92,4 +123,34 @@ def calculate_average_score_per_particpant_and_type(fulldata, score_types):
 
     # Convert the result_data dictionary into a new DataFrame
     result_df = pd.DataFrame(result_data)
+    return result_df
+
+
+def calculate_abs_sport_score_per_particpant(fulldata):
+    # Filter the relevant rows for the specified score types
+    activity_data = fulldata[fulldata['Score_typ'] == "abs_activity"]
+
+    # Select participant columns (assuming they are HL1, HL2, ..., HLN)
+    participant_columns = fulldata.columns[2:-2]  # Adjust indices based on your DataFrame
+
+    # Create an empty DataFrame to store results
+    result_data = {'Date': [], **{col: [] for col in participant_columns}}
+
+    # Group by date
+    for date, group in activity_data.groupby('Date'):
+        # Calculate the average score for each participant
+        absolute_sport_scores = {}
+        for col in participant_columns:
+            abs_score = group.loc[group['Score_typ'] == ["abs_activity"], col].sum()
+            absolute_sport_scores[col] = abs_score
+
+        # Append the results to the result_data dictionary
+        result_data['Date'].append(date)
+        for col in participant_columns:
+            result_data[col].append(absolute_sport_scores[col])
+
+    # Convert the result_data dictionary into a new DataFrame
+    result_df = pd.DataFrame(result_data)
+    print()
+    print(result_df)
     return result_df

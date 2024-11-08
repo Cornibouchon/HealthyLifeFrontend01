@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 from streamlit_option_menu import option_menu
+
+from sections.chase_the_creators import display_chase_the_creators
 from sections.overview_newData import display_overview_new
 from sections.sleep_newData import display_sleep
 from sections.sport_newData import display_sport
@@ -16,16 +18,21 @@ with open("styles.css") as f:
 with st.sidebar:
     choose = option_menu(
         "Navigation",
-        ["Overview", "Sport", "Sleep", ],
-        icons=["house", "activity", "moon", ],
+        ["Overview", "Sport", "Sleep", "Chase The Creators"],
+        icons=["house", "activity", "moon", "dash"],
     )
 
 # Load the data from the Excel file
 file_path = "data/Daily_Scores.xlsx"
+file_path_chase = "data/Daily_Scores_all.xlsx"
 
 data = pd.read_excel(file_path)
+data_chase = pd.read_excel(file_path_chase)
 # Renaming the Total Score names
 data = data.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
+data_chase = data_chase.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
+
+print(data_chase)
 
 
 def test_muchacho_columns_sum_equals_muchachos(df):
@@ -72,3 +79,13 @@ elif choose == "Sleep":
         unsafe_allow_html=True
     )
     display_sleep(data)
+elif choose == "Chase The Creators":
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>
+            Chase the Creators: Absolute Sport Score
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
+    display_chase_the_creators(data, data_chase)

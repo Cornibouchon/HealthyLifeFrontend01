@@ -17,6 +17,20 @@ def display_ranking(sorted_scores):
         """, unsafe_allow_html=True)
 
 
+def display_ranking_chase(sorted_scores, Score1, Score2):
+    for i, row in sorted_scores.iterrows():
+        # Determine CSS class for top 3 or if the score is higher or equal to Score1 or Score2
+        rank_class = f"top-1" if row['Total Score'] >= Score1 or row['Total Score'] >= Score2 else ""
+
+        # HTML for each participant row with dynamic styling
+        st.markdown(f"""
+            <div class="participant-ranking {rank_class}">
+                <div class="participant-name">{row['Participant']}</div>
+                <div class="participant-score">{row['Total Score']:.1f}</div>
+            </div>
+        """, unsafe_allow_html=True)
+
+
 def display_Teamscore(filtered_data, team_bonjour_col, team_muchachos_col):
     # Calculate the sum for Bonjour and Muchachos
     total_score_bonjour = filtered_data[TEAM_RESTFUL_GAINZ_COL].sum()

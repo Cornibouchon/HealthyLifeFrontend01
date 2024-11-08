@@ -2,7 +2,7 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-from utils.data_manipulation import calculate_average_score_per_particpant_and_type, calculate_total_team_scores
+from utils.data_manipulation import calculate_total_team_scores
 from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL
 
 
@@ -23,7 +23,7 @@ def display_overview_new(data):
     with col1:
         st.markdown(f"<h2 style='text-align: center;'>{TEAM_RESTFUL_GAINZ_COL}</h2>",
                     unsafe_allow_html=True)  # Centered heading
-        total_bonjour = results_data[TEAM_RESTFUL_GAINZ_COL].sum()  # Use the rounded scores
+        total_bonjour = results_data[TEAM_RESTFUL_GAINZ_COL].sum().__round__(2)  # Use the rounded scores
         st.markdown(f"""
             <div class='total-score' style="text-align: center;">
                 <h2>Team Score</h2>
@@ -39,7 +39,7 @@ def display_overview_new(data):
         st.markdown(f"""
             <div class='total-score' style="text-align: center;">
                 <h2>Team Score</h2>
-                <h1>{total_muchachos}</h1>
+                <h1>{total_muchachos.__round__(2)}</h1>
             </div>
         """, unsafe_allow_html=True)
         st.plotly_chart(fig_muchachos, use_container_width=True, key='fig_muchachos')  # Plot for Team Muchachos
