@@ -32,8 +32,6 @@ data_chase = pd.read_excel(file_path_chase)
 data = data.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
 data_chase = data_chase.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
 
-print(data_chase)
-
 
 def test_muchacho_columns_sum_equals_muchachos(df):
     # Filter columns containing "Muchacho"

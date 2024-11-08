@@ -10,12 +10,7 @@ from utils.data_manipulation import calculate_total_team_scores_by_type, \
 
 
 def display_chase_the_creators(full_data, chase_data):
-    creators_data_sum = calculate_total_abs_activity(chase_data)
-    print("creators data sum old")
-    print(creators_data_sum)
     creators_data_sum1 = calculate_average_score_per_particpant_and_type(chase_data, ["abs_activity", "abs_sleep"])
-    print("creators data sum new")
-    print(creators_data_sum1)
 
     creators_data_sum1 = creators_data_sum1[creators_data_sum1['Date'] >= '2024-11-06']
 

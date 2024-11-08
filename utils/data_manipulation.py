@@ -142,7 +142,7 @@ def calculate_average_score_per_particpant_and_type(fulldata, score_types):
         average_scores = {}
         for col in participant_columns:
             abs_score = group.loc[group['Score_typ'] == score_types[0], col].sum()
-            rel_score = group.loc[group['Score_typ'] == score_types[0], col].sum()
+            rel_score = group.loc[group['Score_typ'] == score_types[1], col].sum()
             average_score = (abs_score + rel_score) / 2
             average_scores[col] = average_score
 
