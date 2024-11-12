@@ -20,7 +20,7 @@ def display_ranking(sorted_scores):
 def display_ranking_chase(sorted_scores, Score1, Score2):
     for i, row in sorted_scores.iterrows():
         # Determine CSS class for top 3 or if the score is higher or equal to Score1 or Score2
-        rank_class = f"top-1" if row['Total Score'] >= Score1 or row['Total Score'] >= Score2 else ""
+        rank_class = f"top-1" if row['Total Score'] >= Score1 and row['Total Score'] >= Score2 else ""
 
         # HTML for each participant row with dynamic styling
         st.markdown(f"""
