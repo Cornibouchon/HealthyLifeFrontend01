@@ -13,7 +13,7 @@ def display_chase_the_creators(full_data, chase_data):
     creators_data_sum1 = calculate_average_score_per_particpant_and_type(chase_data, ["abs_activity", "abs_sleep"])
 
     creators_data_sum1 = creators_data_sum1[
-        (creators_data_sum1['Date'] >= '2024-11-06') & (creators_data_sum1['Date'] <= '2024-11-10')]
+        (creators_data_sum1['Date'] >= '2024-11-07') & (creators_data_sum1['Date'] <= '2024-11-10')]
 
     # Create two columns for Team Bonjour and Team Muchachos
     col1, col2 = st.columns(2)
@@ -45,7 +45,7 @@ def display_chase_the_creators(full_data, chase_data):
 
     # Filter the data between November 6 and November 10
     selected_participant_data = average_sport_scores_per_participant[
-        (average_sport_scores_per_participant['Date'] >= '2024-11-06') &
+        (average_sport_scores_per_participant['Date'] >= '2024-11-07') &
         (average_sport_scores_per_participant['Date'] <= '2024-11-10')
         ]
 
