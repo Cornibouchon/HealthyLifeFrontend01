@@ -21,7 +21,7 @@ def display_overview_new(data):
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown(f"<h2 style='text-align: center;'>{TEAM_RESTFUL_GAINZ_COL}</h2>",
+        st.markdown(f"<h2 style='text-align: center;'>{TEAM_RESTFUL_GAINZ_COL} 🥩</h2>",
                     unsafe_allow_html=True)  # Centered heading
         total_bonjour = results_data[TEAM_RESTFUL_GAINZ_COL].sum().__round__(2)  # Use the rounded scores
         st.markdown(f"""
@@ -33,7 +33,7 @@ def display_overview_new(data):
         st.plotly_chart(fig_bonjour, use_container_width=True, key='fig_bonjour')  # Plot for Team Bonjour
 
     with col2:
-        st.markdown(f"<h2 style='text-align: center;'>{TEAM_FINAL_BOSSES_COL}</h2>",
+        st.markdown(f"<h2 style='text-align: center;'>{TEAM_FINAL_BOSSES_COL} 💪🏼</h2>",
                     unsafe_allow_html=True)  # Centered heading
         total_muchachos = results_data[TEAM_FINAL_BOSSES_COL].sum()  # Use the rounded scores
         st.markdown(f"""
