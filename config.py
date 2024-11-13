@@ -8,7 +8,6 @@ CREATOR_TWO = "Smash di weg"
 
 # Team members
 TEAM_RESTFUL_GAINZ_MEMBERS = [
-    # Add member names here
     "vladimir gluten",
     "Muchacho2",
     "agilar radikal", 
@@ -19,7 +18,6 @@ TEAM_RESTFUL_GAINZ_MEMBERS = [
 ]
 
 TEAM_FINAL_BOSSES_MEMBERS = [
-    # Add member names here
     "helth",
     "Rühl Jr.",
     "MagicMike",
