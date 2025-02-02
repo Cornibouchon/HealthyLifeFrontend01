@@ -36,7 +36,7 @@ def calculate_total_team_scores(data):
 
 
 def calculate_total_abs_activity(data):
-    # Filter the data to only include dates from November 6, 2024, onward
+    # Filter the data to only include dates from February 6, 2024, onward
     data = data[data['Date'] >= '2024-11-06']
 
     # Create a new DataFrame to store results
@@ -66,7 +66,7 @@ def calculate_total_abs_activity(data):
 
 
 def calculate_total_abs_activity_and_sleep(data):
-    # Filter the data to only include dates from November 6, 2024, onward
+    # Filter the data to only include dates from February 6, 2024, onward
     data = data[data['Date'] >= '2024-11-06']
 
     # Create a new DataFrame to store results

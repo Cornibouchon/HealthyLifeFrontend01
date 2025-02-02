@@ -43,7 +43,7 @@ def display_chase_the_creators(full_data, chase_data):
     # Get the total scores
     average_sport_scores_per_participant = calculate_abs_sport_score_per_particpant(full_data)
 
-    # Filter the data between November 6 and November 10
+    # Filter the data between February 6 and February 10
     selected_participant_data = average_sport_scores_per_participant[
         (average_sport_scores_per_participant['Date'] >= '2024-11-07') &
         (average_sport_scores_per_participant['Date'] <= '2024-11-10')
