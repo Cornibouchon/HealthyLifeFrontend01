@@ -6,9 +6,10 @@ from sections.chase_the_creators import display_chase_the_creators
 from sections.overview_newData import display_overview_new
 from sections.sleep_newData import display_sleep
 from sections.sport_newData import display_sport
+from sections.goals_page import display_goals_page
 
 # Set page configuration
-st.set_page_config(page_title="HealthyLife November Dashboard", layout="wide")
+st.set_page_config(page_title="HealthyLife February Dashboard", layout="wide")
 
 # Load CSS from styles.css
 with open("styles.css") as f:
@@ -18,20 +19,19 @@ with open("styles.css") as f:
 with st.sidebar:
     choose = option_menu(
         "Navigation",
-        ["Overview", "Sport", "Sleep", "Chase The Creators"],
-        icons=["house", "activity", "moon", "dash"],
+        ["Sport", "Sleep", "Overview", "Goals"],
+        #["Sport", "Sleep","Overview", "Goals", "Chase The Creators"],
+        icons=["house", "activity", "moon", "dash", "dash"],
     )
 
 # Load the data from the Excel file
-file_path = "data/Daily_Scores.xlsx"
-file_path_chase = "data/Daily_Scores_all.xlsx"
+file_path = "data/Firmen/ipt/2025-02-01/Daily_Scores.xlsx"
+# file_path_chase = "data/Daily_Scores_all.xlsx"
+file_path_goals="data/Firmen/ipt/2025-02-01/Daily_Motivations.xlsx"
 
 data = pd.read_excel(file_path)
-data_chase = pd.read_excel(file_path_chase)
-# Renaming the Total Score names
-data = data.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
-data_chase = data_chase.rename(columns={'Muchachos': 'RESTful Gainz', 'Bonjour': 'Final Bosses'})
-
+# data_chase = pd.read_excel(file_path_chase)
+data_goals = pd.read_excel(file_path_goals)
 
 def test_muchacho_columns_sum_equals_muchachos(df):
     # Filter columns containing "Muchacho"
@@ -51,7 +51,7 @@ if choose == "Overview":
     st.markdown(
         """
         <h1 style='text-align: center;'>
-            HealthyLife November: Overview
+            HealthyLife February: Overview
         </h1>
         """,
         unsafe_allow_html=True
@@ -61,7 +61,7 @@ elif choose == "Sport":
     st.markdown(
         """
         <h1 style='text-align: center;'>
-            HealthyLife November: Sport
+            HealthyLife February: Sport
         </h1>
         """,
         unsafe_allow_html=True
@@ -71,22 +71,34 @@ elif choose == "Sleep":
     st.markdown(
         """
         <h1 style='text-align: center;'>
-            HealthyLife November: Sleep
+            HealthyLife February: Sleep
         </h1>
         """,
         unsafe_allow_html=True
     )
     display_sleep(data)
-elif choose == "Chase The Creators":
+elif choose == "Goals":
     st.markdown(
         """
         <h1 style='text-align: center;'>
-            Chase the Creators:
+            Reach your Goals
         </h1>
-        <h1 style='text-align: center;'>
-            (Absolute Sport + Absolute Sleep) / 2
-        </h1>
+
         """,
         unsafe_allow_html=True
     )
-    display_chase_the_creators(data, data_chase)
+    display_goals_page(data_goals)
+
+# elif choose == "Chase The Creators":
+#     st.markdown(
+#         """
+#         <h1 style='text-align: center;'>
+#             Chase the Creators:
+#         </h1>
+#         <h1 style='text-align: center;'>
+#             (Absolute Sport + Absolute Sleep) / 2
+#         </h1>
+#         """,
+#         unsafe_allow_html=True
+#     )
+#     display_chase_the_creators(data, data_chase)
