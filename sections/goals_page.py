@@ -9,12 +9,13 @@ def display_goals_page(data_goals):
     # Get participants (column names starting from the 3rd column)
     participants = data_goals.columns[2:]
 
+
     # Dropdown for participant selection
     participant = st.selectbox("Choose a participant:", participants)
 
     # Generate February calendar for 2025
     year = 2025
-    month = 2
+    month = 4
     february_days = calendar.Calendar(firstweekday=0).monthdayscalendar(year, month)  # Week starts on Monday
 
     # Weekday names

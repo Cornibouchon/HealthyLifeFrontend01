@@ -1,13 +1,20 @@
 import streamlit as st
 
-from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL, TEAM_RESTFUL_GAINZ_MEMBERS, TEAM_FINAL_BOSSES_MEMBERS
+from config import TEAM_2md23_COL, TEAM_Arbs_COL, TEAM_2md23, TEAM_Arbs, TEAM_2md23, TEAM_Arbs, TEAM_MinhKhaZen
 
 
 def display_ranking(sorted_scores):
     for i, row in sorted_scores.iterrows():
-        # Determine team icon
-        team_icon = "🥩" if row['Participant'] in TEAM_RESTFUL_GAINZ_MEMBERS else "💪🏼" if row['Participant'] in TEAM_FINAL_BOSSES_MEMBERS else "⚪"
-        
+        # Determine team icon based on ranking
+        if i == 0:
+            team_icon = "🥇"  # Gold trophy
+        elif i == 1:
+            team_icon = "🥈"  # Silver trophy
+        elif i == 2:
+            team_icon = "🥉"  # Bronze trophy
+        else:
+            team_icon = "🏆"  # Default trophy for others
+
         # Determine CSS class for top 3
         rank_class = f"top-{i + 1}" if i < 3 else ""
 
@@ -34,25 +41,34 @@ def display_ranking_chase(sorted_scores, Score1, Score2):
         """, unsafe_allow_html=True)
 
 
-def display_Teamscore(filtered_data, team_bonjour_col, team_muchachos_col):
-    # Calculate the sum for Bonjour and Muchachos
-    total_score_bonjour = filtered_data[TEAM_RESTFUL_GAINZ_COL].sum()
-    total_score_muchachos = filtered_data[TEAM_FINAL_BOSSES_COL].sum()
-    # Display team names and total scores in two columns
-    col1, col2 = st.columns(2)
+def display_Teamscore(filtered_data, team01_col, team02_col, team03_col):
+    # Calculate the sum for Bonjour, Muchachos and the third team
+    total_score_team01 = filtered_data[TEAM_2md23_COL].sum()
+    total_score_team02 = filtered_data[TEAM_Arbs_COL].sum()
+    total_score_team03 = filtered_data["Minh-Kha-Zen"].sum()
+    # Display team names and total scores in three columns
+    col1, col2, col3 = st.columns(3)
     with col1:
-        st.markdown(f"<h2 style='text-align: center;'>{team_bonjour_col} 🥩</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='text-align: center;'>{team01_col}</h2>", unsafe_allow_html=True)
         st.markdown(f"""
                     <div class='total-score'>
                         <h2>Total Score</h2>
-                        <h1>{total_score_bonjour:.1f}</h1> 
+                        <h1>{total_score_team01:.1f}</h1> 
                     </div>
                 """, unsafe_allow_html=True)
     with col2:
-        st.markdown(f"<h2 style='text-align: center;'>{team_muchachos_col} 💪🏼</h2>", unsafe_allow_html=True)
+        st.markdown(f"<h2 style='text-align: center;'>{team02_col}</h2>", unsafe_allow_html=True)
         st.markdown(f"""
                     <div class='total-score'>
                         <h2>Total Score</h2>
-                        <h1>{total_score_muchachos:.1f}</h1> 
+                        <h1>{total_score_team02:.1f}</h1> 
+                    </div>
+                """, unsafe_allow_html=True)
+    with col3:
+        st.markdown(f"<h2 style='text-align: center;'>{team03_col}</h2>", unsafe_allow_html=True)
+        st.markdown(f"""
+                    <div class='total-score'>
+                        <h2>Total Score</h2>
+                        <h1>{total_score_team03:.1f}</h1> 
                     </div>
                 """, unsafe_allow_html=True)

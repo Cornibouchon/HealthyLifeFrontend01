@@ -1,6 +1,6 @@
 import pandas as pd
 
-from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL
+from config import TEAM_2md23_COL, TEAM_Arbs_COL, TEAM_MinhKhaZen_COL
 import pandas as pd
 
 
@@ -8,8 +8,9 @@ def calculate_total_team_scores(data):
     # Create a new DataFrame to store results
     result_data = {
         'Date': [],
-        TEAM_RESTFUL_GAINZ_COL: [],
-        TEAM_FINAL_BOSSES_COL: []
+        TEAM_2md23_COL: [],
+        TEAM_Arbs_COL: [],
+        TEAM_MinhKhaZen_COL: []
     }
 
     # Iterate through each unique date in the original DataFrame
@@ -18,18 +19,18 @@ def calculate_total_team_scores(data):
         date_data = data[data['Date'] == date]
 
         # Calculate total scores by summing the first four entries
-        total_score_bonjour = date_data[TEAM_RESTFUL_GAINZ_COL].head(4).sum() / 4
-        total_score_muchachos = date_data[TEAM_FINAL_BOSSES_COL].head(4).sum() / 4
-
+        total_score_team01 = date_data[TEAM_2md23_COL].head(4).sum() / 4
+        total_score_team02 = date_data[TEAM_Arbs_COL].head(4).sum() / 4
+        total_score_team03 = date_data[TEAM_MinhKhaZen_COL].head(4).sum() / 4
         # Round to one decimal place
-        total_score_bonjour = round(total_score_bonjour, 1)
-        total_score_muchachos = round(total_score_muchachos, 1)
-
+        total_score_team01 = round(total_score_team01, 1)
+        total_score_team02 = round(total_score_team02, 1)
+        total_score_team03 = round(total_score_team03, 1)
         # Append the results to the result_data dictionary
         result_data['Date'].append(date)
-        result_data[TEAM_RESTFUL_GAINZ_COL].append(total_score_bonjour)
-        result_data[TEAM_FINAL_BOSSES_COL].append(total_score_muchachos)
-
+        result_data[TEAM_2md23_COL].append(total_score_team01)
+        result_data[TEAM_Arbs_COL].append(total_score_team02)
+        result_data[TEAM_MinhKhaZen_COL].append(total_score_team03)
     # Convert the result_data dictionary into a new DataFrame
     result_df = pd.DataFrame(result_data)
     return result_df
@@ -99,8 +100,9 @@ def calculate_total_team_scores_by_type(data, score_types):
     # Create a new DataFrame to store results
     result_data = {
         'Date': [],
-        TEAM_RESTFUL_GAINZ_COL: [],
-        TEAM_FINAL_BOSSES_COL: []
+        TEAM_2md23_COL: [],
+        TEAM_Arbs_COL: [],
+        TEAM_MinhKhaZen_COL: []
     }
 
     # Iterate through each unique date in the original DataFrame
@@ -109,18 +111,18 @@ def calculate_total_team_scores_by_type(data, score_types):
         date_data = data[(data['Date'] == date) & (data['Score_typ'].isin(score_types))]
 
         # Calculate total scores for TEAM_BONJOUR_COL and TEAM_MUCHACHOS_COL by summing the relevant entries
-        total_score_bonjour = date_data[TEAM_RESTFUL_GAINZ_COL].sum() / 2  # Sum and divide by 2
-        total_score_muchachos = date_data[TEAM_FINAL_BOSSES_COL].sum() / 2  # Sum and divide by 2
-
+        total_score_team1 = date_data[TEAM_2md23_COL].sum() / 2  # Sum and divide by 2
+        total_score_team2 = date_data[TEAM_Arbs_COL].sum() / 2  # Sum and divide by 2
+        total_score_team3 = date_data[TEAM_MinhKhaZen_COL].sum() / 2  # Sum and divide by 2
         # Round to one decimal place
-        total_score_bonjour = round(total_score_bonjour, 1)
-        total_score_muchachos = round(total_score_muchachos, 1)
-
+        total_score_team1 = round(total_score_team1, 1)
+        total_score_team2 = round(total_score_team2, 1)
+        total_score_team3 = round(total_score_team3, 1)
         # Append the results to the result_data dictionary
         result_data['Date'].append(date)
-        result_data[TEAM_RESTFUL_GAINZ_COL].append(total_score_bonjour)
-        result_data[TEAM_FINAL_BOSSES_COL].append(total_score_muchachos)
-
+        result_data[TEAM_2md23_COL].append(total_score_team1)
+        result_data[TEAM_Arbs_COL].append(total_score_team2)
+        result_data[TEAM_MinhKhaZen_COL].append(total_score_team3)
     # Convert the result_data dictionary into a new DataFrame
     result_df = pd.DataFrame(result_data)
     return result_df

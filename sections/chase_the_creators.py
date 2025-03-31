@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from config import TEAM_RESTFUL_GAINZ_COL, TEAM_FINAL_BOSSES_COL, CREATOR_ONE, CREATOR_TWO
+from config import TEAM_2md23, TEAM_Arbs, TEAM_MinhKhaZen, TEAM_2md23_COL, TEAM_Arbs_COL, TEAM_MinhKhaZen_COL, CREATOR_ONE, CREATOR_TWO
 from widgets.ranking import display_ranking, display_Teamscore, display_ranking_chase
 from widgets.slider import daterange_slider
 from utils.data_manipulation import calculate_total_team_scores_by_type, \

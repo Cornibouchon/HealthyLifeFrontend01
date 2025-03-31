@@ -1,27 +1,23 @@
 # config.py
 
 # Global constants
-TEAM_RESTFUL_GAINZ_COL = 'RESTful Gainz'
-TEAM_FINAL_BOSSES_COL = 'noREST'
+TEAM_2md23_COL = '2md23'
+TEAM_Arbs_COL = 'Arbs'
+TEAM_MinhKhaZen_COL = 'Minh-Kha-Zen'
 CREATOR_ONE = "Friss mi Stoub"
 CREATOR_TWO = "Smash di weg"
 
 # Team members
-TEAM_RESTFUL_GAINZ_MEMBERS = [
-    "Sportfinke",
-    "Summerbody25",
-    "GurkenSalat", 
-    "StayStrong",
-    "ClearMind23",
-    "DeadliftCarror",
-    "OS"
+TEAM_2md23 = [
+    "2md23",
+
 ]
 
-TEAM_FINAL_BOSSES_MEMBERS = [
-    "Taylor Atwood",
-    "Iron Man",
-    "yKing",
-    "WobblyWheel",
-    "HealthQuest",
-    "JKL"
+TEAM_Arbs = [
+    "Arbs"
 ]
+
+TEAM_MinhKhaZen = [
+    "Minh-kha-Zen"
+]
+
