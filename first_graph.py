@@ -30,10 +30,9 @@ file_path = "data/Firmen/zenline/2025-04-01/Daily_Scores.xlsx"
 # file_path_chase = "data/Daily_Scores_all.xlsx"
 file_path_goals="data/Firmen/zenline/2025-04-01/Daily_Motivations.xlsx"
 
-data = pd.read_excel(file_path)
+data = pd.read_excel(file_path).iloc[:, :-1]
 # data_chase = pd.read_excel(file_path_chase)
 data_goals = pd.read_excel(file_path_goals)
-
 
 # # Split into two DataFrames
 # restful_gainz_df = data[["Date"] + TEAM_2md23].copy()
