@@ -11,9 +11,14 @@ from utils.data_manipulation import calculate_total_team_scores_by_type, \
 
 def display_chase_the_creators(full_data, chase_data):
     creators_data_sum1 = calculate_average_score_per_particpant_and_type(chase_data, ["abs_activity", "abs_sleep"])
-
+    start_date_chase = '2025-04-07'
+    end_date_chase = '2025-04-14'
+    
+    # Convert the Date column to datetime if it's not already
+    creators_data_sum1['Date'] = pd.to_datetime(creators_data_sum1['Date'])
+    
     creators_data_sum1 = creators_data_sum1[
-        (creators_data_sum1['Date'] >= '2024-11-07') & (creators_data_sum1['Date'] <= '2024-11-10')]
+        (creators_data_sum1['Date'] >= start_date_chase) & (creators_data_sum1['Date'] <= end_date_chase)]
 
     # Create two columns for Team Bonjour and Team Muchachos
     col1, col2 = st.columns(2)
@@ -25,7 +30,7 @@ def display_chase_the_creators(full_data, chase_data):
                     unsafe_allow_html=True)  # Centered heading
         st.markdown(f"""
                 <div class='total-score' style="text-align: center;">
-                    <h2>iEvent Score</h2>
+                    <h2>Total Score</h2>
                     <h1>{total_friss_mi_stoub.__round__(2)}</h1>
                 </div>
             """, unsafe_allow_html=True)
@@ -35,7 +40,7 @@ def display_chase_the_creators(full_data, chase_data):
                     unsafe_allow_html=True)  # Centered heading
         st.markdown(f"""
                 <div class='total-score' style="text-align: center;">
-                    <h2>iEvent Score</h2>
+                    <h2>Total Score</h2>
                     <h1>{total_smaesh_di_waeg.__round__(2)}</h1>
                 </div>
             """, unsafe_allow_html=True)
@@ -45,8 +50,8 @@ def display_chase_the_creators(full_data, chase_data):
 
     # Filter the data between February 6 and February 10
     selected_participant_data = average_sport_scores_per_participant[
-        (average_sport_scores_per_participant['Date'] >= '2024-11-07') &
-        (average_sport_scores_per_participant['Date'] <= '2024-11-10')
+        (average_sport_scores_per_participant['Date'] >= start_date_chase) &
+        (average_sport_scores_per_participant['Date'] <= end_date_chase)
         ]
 
     # Calculate total scores for each participant based on the filtered data

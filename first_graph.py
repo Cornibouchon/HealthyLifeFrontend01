@@ -20,18 +20,18 @@ with open("styles.css") as f:
 with st.sidebar:
     choose = option_menu(
         "Navigation",
-        ["Sport", "Sleep", "Overview", "Goals"],
+        ["Sport", "Sleep", "Overview", "Goals", "Chase The Creators"],
         #["Sport", "Sleep","Overview", "Goals", "Chase The Creators"],
-        icons=["house", "activity", "moon", "dash", "dash"],
+        icons=["house", "activity", "moon", "dash", "trophy"],
     )
 
 # Load the data from the Excel file
 file_path = "data/Firmen/zenline/2025-04-01/Daily_Scores.xlsx"
-# file_path_chase = "data/Daily_Scores_all.xlsx"
+file_path_chase = "data/Firmen/creators/2025-04-01/Daily_Scores.xlsx"
 file_path_goals="data/Firmen/zenline/2025-04-01/Daily_Motivations.xlsx"
 
 data = pd.read_excel(file_path).iloc[:, :-1]
-# data_chase = pd.read_excel(file_path_chase)
+data_chase = pd.read_excel(file_path_chase)
 data_goals = pd.read_excel(file_path_goals)
 
 # # Split into two DataFrames
@@ -109,16 +109,16 @@ elif choose == "Goals":
     )
     display_goals_page(data_goals)
 
-# elif choose == "Chase The Creators":
-#     st.markdown(
-#         """
-#         <h1 style='text-align: center;'>
-#             Chase the Creators:
-#         </h1>
-#         <h1 style='text-align: center;'>
-#             (Absolute Sport + Absolute Sleep) / 2
-#         </h1>
-#         """,
-#         unsafe_allow_html=True
-#     )
-#     display_chase_the_creators(data, data_chase)
+elif choose == "Chase The Creators":
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>
+            Chase the Creators:
+        </h1>
+        <h1 style='text-align: center;'>
+            (Absolute Sport + Absolute Sleep) / 2
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
+    display_chase_the_creators(data, data_chase)
